@@ -8,7 +8,8 @@ class Productos (models.Model):
     descripcion = models.CharField(max_length=200)
     stockProducto = models.CharField(max_length=20)
     productoImagen =  models.CharField(max_length=300)
-    ejemplo = models.CharField(max_length=10,default='hola')
+    precio = models.CharField(max_length=10, default='0')
+    
 
 
     
