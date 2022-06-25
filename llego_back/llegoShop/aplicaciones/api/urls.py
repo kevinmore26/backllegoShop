@@ -4,6 +4,6 @@ from .views import ProductoView
 
  
 urlpatterns = [
-    path('listarProducto/',ProductoView.as_view(),name='productos_list')
-     
+    path('listarProducto/',ProductoView.as_view(),name='productos_list'),
+    path('listarProducto/<int:id>',ProductoView.as_view(),name='productos_proccess') 
 ]
