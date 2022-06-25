@@ -40,29 +40,32 @@ class ProductoView(View):
     
     
     
-    def post(self,request):
+    def post(self,request,nombre=''):
         
-        jd = json.loads(request.body)
-        
-        Productos.objects.create(nombre=jd['nombre'],descripcion=jd['descripcion'],stockProducto=jd['stockProducto'],productoImagen=jd['productoImagen'])
-        datos = {'message':"Success"}
-        return JsonResponse(datos)
+                jd = json.loads(request.body)
+            
+             
+                Productos.objects.create(nombre=jd['nombre'],descripcion=jd['descripcion'],stockProducto=jd['stockProducto'],productoImagen=jd['productoImagen'])
+                datos = {'message':"Success"}
+                return JsonResponse(datos)
     
 
-    def put(self,request,id):
-        jd= json.loads(request.body)
-        productos = list(Productos.objects.filter(id=id).values())
-        if len(productos) > 0:
-            productos= Productos.objects.get(id=id)
-            productos.nombre = jd['nombre']
-            productos.descripcion = jd['descripcion']
-            productos.stockProducto = jd['stockProducto']
-            productos.productoImagen = jd['productoImagen']
-            productos.precio = jd['precio']
-            productos.save()
-            datos = {'message':"Todo bien"}
-        else:
-            datos = {'message':"no se encontró el producto"}
+    def put(self,request,id=0):
         
-        return JsonResponse(datos)
+        
+            jd= json.loads(request.body)
+            productos = list(Productos.objects.filter(id=id).values())
+            if len(productos) > 0:
+                productos= Productos.objects.get(id=id)
+                productos.nombre = jd['nombre']
+                productos.descripcion = jd['descripcion']
+                productos.stockProducto = jd['stockProducto']
+                productos.productoImagen = jd['productoImagen']
+                productos.precio = jd['precio']
+                productos.save()
+                datos = {'message':"Todo bien"}
+            else:
+                datos = {'message':"no se encontró el producto"}
+            
+            return JsonResponse(datos)
                 
