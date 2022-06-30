@@ -5,12 +5,15 @@ from .models import Productos
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator 
 import json
+ 
 # Create your views here.
 
 class ProductoView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request , *args , **kwargs )  :
         return super().dispatch(request, *args, **kwargs)
+    
+ 
     
     def get (self,request, id = 0 ):
         
@@ -68,4 +71,39 @@ class ProductoView(View):
                 datos = {'message':"no se encontró el producto"}
             
             return JsonResponse(datos)
-                
+    
+    
+    def delete(self,request,id=0):
+        
+        productos = list(Productos.objects.filter(id=id).values())
+        if len(productos)>0:
+            Productos.objects.filter(id=id).delete()
+            datos = {'message':"Eliminado exitosamente"}
+        else :
+            datos = {'message': "Producto no encontrado"}
+        
+        return JsonResponse(datos)
+    
+class BuscadorProducto(View):
+  
+    queryset = list(Productos.objects.all().values())
+    def get(self, request):
+        nombre = request.GET.get('nombre')
+        print(nombre)
+
+        clienteEncontrado = None 
+
+        if nombre:
+            if clienteEncontrado is not None:
+                clienteEncontrado = clienteEncontrado.filter(
+                    nombre__icontains=nombre).all() 
+                print('hola')
+                datos = {'message': "todo salió mal" }
+            else:
+                clienteEncontrado = list(Productos.objects.filter(
+                    nombre__icontains=nombre).all().values()),
+                print(clienteEncontrado)
+                datos = {'message': "prueba123",'datos':clienteEncontrado}
+ 
+        datos = {'message': "prueba123",'datos':clienteEncontrado}
+        return JsonResponse(datos)
