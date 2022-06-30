@@ -85,7 +85,7 @@ class ProductoView(View):
         return JsonResponse(datos)
     
 class BuscadorProducto(View):
-  
+    
     queryset = list(Productos.objects.all().values())
     def get(self, request):
         nombre = request.GET.get('nombre')
