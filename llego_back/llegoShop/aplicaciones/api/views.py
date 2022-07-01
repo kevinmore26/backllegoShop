@@ -48,7 +48,7 @@ class ProductoView(View):
                 jd = json.loads(request.body)
             
              
-                Productos.objects.create(nombre=jd['nombre'],descripcion=jd['descripcion'],stockProducto=jd['stockProducto'],productoImagen=jd['productoImagen'])
+                Productos.objects.create(nombre=jd['nombre'],descripcion=jd['descripcion'],stockProducto=jd['stockProducto'],productoImagen=jd['productoImagen'],precio=jd['precio'],productoTipo=jd['productoTipo'])
                 datos = {'message':"Success"}
                 return JsonResponse(datos)
     
@@ -65,6 +65,7 @@ class ProductoView(View):
                 productos.stockProducto = jd['stockProducto']
                 productos.productoImagen = jd['productoImagen']
                 productos.precio = jd['precio']
+                productos.productoTipo = jd['productoTipo']
                 productos.save()
                 datos = {'message':"Todo bien"}
             else:
@@ -84,26 +85,44 @@ class ProductoView(View):
         
         return JsonResponse(datos)
     
-class BuscadorProducto(View):
-    
-    queryset = list(Productos.objects.all().values())
-    def get(self, request):
+
+class BuscarProducto(View):
+    queryset =  list(Productos.objects.all().values())
+    def get( self , request):
         nombre = request.GET.get('nombre')
-        print(nombre)
+        print(nombre)   
+        
+        productoEncontrado = None
+        if nombre :
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(nombre__icontains = nombre).all()
+                datos = {'message':"todo mal"}
+            
+            else : 
+                productoEncontrado = list(Productos.objects.filter(
+                    nombre__icontains = nombre ).all().values()),
+                
+                datos = { 'message' : "todo bien", 'datos':productoEncontrado}
+            
+            return JsonResponse(datos)
 
-        clienteEncontrado = None 
-
-        if nombre:
-            if clienteEncontrado is not None:
-                clienteEncontrado = clienteEncontrado.filter(
-                    nombre__icontains=nombre).all() 
-                print('hola')
-                datos = {'message': "todo salió mal" }
-            else:
-                clienteEncontrado = list(Productos.objects.filter(
-                    nombre__icontains=nombre).all().values()),
-                print(clienteEncontrado)
-                datos = {'message': "prueba123",'datos':clienteEncontrado}
- 
-        datos = {'message': "prueba123",'datos':clienteEncontrado}
-        return JsonResponse(datos)
+class BuscarProductoTipo(View):
+    queryset =  list(Productos.objects.all().values())
+    def get( self , request):
+        productoTipo = request.GET.get('productoTipo')
+        print(productoTipo)   
+        
+        productoEncontrado = None
+        if productoTipo :
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(productoTipo__icontains = productoTipo).all()
+                datos = {'message':"todo mal"}
+            
+            else : 
+                productoEncontrado = list(Productos.objects.filter(
+                    productoTipo__icontains = productoTipo ).all().values()),
+                
+                datos = { 'message' : "todo bien", 'datos':productoEncontrado}
+            
+            return JsonResponse(datos)
+        
