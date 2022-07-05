@@ -1,6 +1,6 @@
 from importlib.resources import path
 from django.urls import path
-from .views import ProductoView ,BuscarProducto,BuscarProductoTipo
+from .views import ProductoView ,BuscarProducto 
 
  
 urlpatterns = [
@@ -9,6 +9,5 @@ urlpatterns = [
     path('listarProducto/<int:id>',ProductoView.as_view(),name='productos_proccess'),
     
     path('buscarProducto/',BuscarProducto.as_view(),name='productos_proccess'),
-    path('buscarProductoTipo/',BuscarProductoTipo.as_view(),name='productos_proccess'),
-   
+    
 ]
