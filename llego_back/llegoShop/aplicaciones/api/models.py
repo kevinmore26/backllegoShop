@@ -12,6 +12,7 @@ class Productos (models.Model):
     productoImagen =  models.CharField(max_length=300)
     precio = models.CharField(max_length=10)
     productoTipo = models.CharField(max_length=10 ,null=False, choices=TIPO_PRODUCTO)
+    productoSubTipo = models.CharField(max_length=10)
      
 
 
