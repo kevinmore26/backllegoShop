@@ -285,6 +285,59 @@ class AdopcionController(RetrieveUpdateDestroyAPIView):
             "content": serializador.data
         })
 
+class FiltrosProductosController(RetrieveAPIView):
+    serializer_class = ProductoSerializer
+    def get(self, request:Request):
+        id = request.query_params.get('id')
+        nombre = request.query_params.get('nombre')
+        precio = request.query_params.get('precio')
+        created_at = request.query_params.get('created_at')
+        disponible = request.query_params.get('disponible') 
+        tipo = request.query_params.get('tipo')
+        subtipo = request.query_params.get('subtipo')
+        productoEncontrado = None
+
+        if id:
+            productoEncontrado: QuerySet = ProductoModel.objects.filter(productoId=id)
+        if nombre:
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(productoNombre__icontains=nombre).all()
+            else:
+                productoEncontrado = ProductoModel.objects.filter(productoNombre__icontains=nombre).all()
+        if precio:
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(productoPrecio__icontains=precio).all()
+            else:
+                productoEncontrado = ProductoModel.objects.filter(productoPrecio__icontains=precio).all()
+        if tipo:
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(productoTipo__icontains=tipo).all()
+            else:
+                productoEncontrado = ProductoModel.objects.filter(productoTipo__icontains=tipo).all()
+        if subtipo:
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(productoSubTipo__icontains=subtipo).all()
+            else:
+                productoEncontrado = ProductoModel.objects.filter(productoSubTipo__icontains=subtipo).all()
+        if disponible:
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(productoDisponible__icontains=disponible).all()
+            else:
+                productoEncontrado = ProductoModel.objects.filter(productoDisponible__icontains=disponible).all()
+        if created_at:
+            if productoEncontrado is not None:
+                productoEncontrado = productoEncontrado.filter(created_At__icontains=created_at).all()
+            else:
+                productoEncontrado = ProductoModel.objects.filter(created_At__icontains=created_at).all()
+   
+        
+        data = self.serializer_class(instance=productoEncontrado, many=True)
+    
+        return Response(data={
+            'message':'Productos:',
+            'content':data.data
+        })
+
 
 class BuscadorAdoptadoController(RetrieveAPIView):
     serializer_class = AdopcionSerializer
@@ -297,8 +350,7 @@ class BuscadorAdoptadoController(RetrieveAPIView):
         adopcionEncontrado = None
         if id:
             adopcionEncontrado: QuerySet = AdopcionModel.objects.filter(
-                adopcionId=id)
-
+                adopcionId=id) 
             # data = self.serializer_class(instance=clienteEncontrado, many=True)
 
             # return Response({'content': data.data})
@@ -317,6 +369,8 @@ class BuscadorAdoptadoController(RetrieveAPIView):
             else:
                 adopcionEncontrado = AdopcionModel.objects.filter(
                     adopcionNombre__icontains=nombre).all()
+        
+        
 
         
 
