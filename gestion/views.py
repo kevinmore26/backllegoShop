@@ -676,7 +676,9 @@ class PerfilUsuario(RetrieveAPIView):
             print(request.user)
             print(request.auth)
             data = {
+                'user_id': request.user.clienteId,
                 'clienteCorreo' : request.user.clienteCorreo,
+                'clienteDireccion' : request.user.clienteDireccion,
                 'clienteNombre': request.user.clienteNombre,
                 'clienteApellido' : request.user.clienteApellido,
                 'clienteTipo': request.user.clienteTipo
