@@ -679,6 +679,8 @@ class PerfilUsuario(RetrieveAPIView):
                 'user_id': request.user.clienteId,
                 'clienteCorreo' : request.user.clienteCorreo,
                 'clienteDireccion' : request.user.clienteDireccion,
+                'clienteCelular' : request.user.clienteCelular,
+                 
                 'clienteNombre': request.user.clienteNombre,
                 'clienteApellido' : request.user.clienteApellido,
                 'clienteTipo': request.user.clienteTipo

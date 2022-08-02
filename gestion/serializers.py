@@ -180,8 +180,9 @@ class CustomPayloadSerializer(TokenObtainPairSerializer):
         token = super(CustomPayloadSerializer, cls).get_token(user)
         # print(token)
         token['user_id'] = user.clienteId
-        token['user_direccion'] = user.clienteDireccion 
-        token['user_email'] = user.clienteCorreo
+        token['user_direccion'] = user.clienteDireccion
+        token['user_correo'] = user.clienteCorreo 
+        token['user_celular'] = user.clienteCelular  
         token['user_nombre'] = user.clienteNombre
         token['user_apellido'] = user.clienteApellido
         token["user_Tipo"] = user.clienteTipo
