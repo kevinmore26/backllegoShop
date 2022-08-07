@@ -1,3 +1,4 @@
+from enum import unique
 from rest_framework import serializers
 from .models import AdopcionModel, DetallePedidoModel,PedidoModel, ProductoModel, clienteModel
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -55,6 +56,7 @@ class AdopcionSerializer(serializers.ModelSerializer):
 class ClienteSerializer(serializers.ModelSerializer):
     
     clienteNombre=serializers.CharField(max_length=45, required=False,trim_whitespace=True,read_only=True)
+    clienteCorreo=serializers.CharField(max_length=45, required=False,trim_whitespace=True,read_only=True, )
    
     # clienteSexo=serializers.CharField(required=True,max_length=5)
     class Meta:
@@ -77,6 +79,9 @@ class ClienteSerializer(serializers.ModelSerializer):
                 'write_only': True,    
             },
             'clienteTipo':{
+                'write_only': True,    
+            },
+            'email':{
                 'write_only': True,    
             }
         }
