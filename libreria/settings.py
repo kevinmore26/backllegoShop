@@ -94,14 +94,11 @@ WSGI_APPLICATION = 'libreria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': environ.get('DB_HOST'),
-        'NAME': environ.get('DB_NAME'),
-        'PASSWORD': environ.get('DB_PASSWORD'),
-        'PORT': environ.get('DB_PORT'),
-        'USER': environ.get('DB_USERNAME'),
-        'TEST': {
-            'NAME': environ.get('DB_TEST')
-        }
+        'HOST': 'ec2-54-225-234-165.compute-1.amazonaws.com',
+        'NAME': 'deg2i3e2qhv5r',
+        'PASSWORD': '79ce4f62211e462b1cb43378945f74f57aadde1a82b6c16d4960a901e71ced8b',
+        'PORT': '5433',
+        'USER': 'otgdltubalmchc', 
     }
 }
 
