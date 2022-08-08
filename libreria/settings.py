@@ -97,7 +97,7 @@ DATABASES = {
         'HOST': 'ec2-54-225-234-165.compute-1.amazonaws.com',
         'NAME': 'deg2i3e2qhv5r',
         'PASSWORD': '79ce4f62211e462b1cb43378945f74f57aadde1a82b6c16d4960a901e71ced8b',
-        'PORT': '5433',
+        'PORT': '5432',
         'USER': 'otgdltubalmchc', 
     }
 }
