@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-io9n$-$p+uhxug271@ge-ilijb@03c0x3fkt9)(ggk^qj*4van
 #SECRET_KEY = 'django-insecure-qc-i+k%6w0ar05g700mwt8ioq_%tv%2vx)y(ejchft49_#9ipl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'libreria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'ec2-54-225-234-165.compute-1.amazonaws.com',
-        'NAME': 'deg2i3e2qhv5r',
-        'PASSWORD': '79ce4f62211e462b1cb43378945f74f57aadde1a82b6c16d4960a901e71ced8b',
-        'PORT': '5432',
-        'USER': 'otgdltubalmchc', 
+        'HOST': 't07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	',
+        'NAME': 'kdo98yp55yletqk0',
+        'PASSWORD': 'diuk35jerwy0ph5g',
+        'PORT': '3306',
+        'USER': 'a6vxoqjhet555gpt', 
     }
 }
 
