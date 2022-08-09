@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'libreria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 't07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-        'NAME': 'kdo98yp55yletqk0',
-        'PASSWORD': 'diuk35jerwy0ph5g',
+        'HOST': 'x71wqc4m22j8e3ql.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        'NAME': 'ku5ys1osjvd8u9wz',
+        'PASSWORD': 'wd8171geyuf7ys9q',
         'PORT': '3306',
-        'USER': 'a6vxoqjhet555gpt', 
+        'USER': 'kepgun5da1zhrj8s', 
     }
 }
 
