@@ -1,4 +1,5 @@
 django_backrkg/
 __pycache__/
 .env
+*.pyc
 venv-validacion/
