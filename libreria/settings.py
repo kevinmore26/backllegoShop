@@ -33,9 +33,9 @@ SECRET_KEY = 'django-insecure-io9n$-$p+uhxug271@ge-ilijb@03c0x3fkt9)(ggk^qj*4van
 #SECRET_KEY = 'django-insecure-qc-i+k%6w0ar05g700mwt8ioq_%tv%2vx)y(ejchft49_#9ipl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -92,15 +93,12 @@ WSGI_APPLICATION = 'libreria.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': environ.get('DB_HOST'),
-        'NAME': environ.get('DB_NAME'),
-        'PASSWORD': environ.get('DB_PASSWORD'),
-        'PORT': environ.get('DB_PORT'),
-        'USER': environ.get('DB_USERNAME'),
-        'TEST': {
-            'NAME': environ.get('DB_TEST')
-        }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hppa7yb7x389r7cm',
+        'USER': 'mo7h6od09d6dffhd', 
+        'PASSWORD': 'ud7y62d236utzfu4',
+        'HOST': 'x71wqc4m22j8e3ql.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',  
+        'PORT': '3306', 
     }
 }
 
@@ -171,4 +169,3 @@ CORS_ALLOW_METHODS = ['GET', 'POST','PUT','DELETE']
 CORS_ALLOW_HEADERS = ['Content-Type', 'origin', 'Authorization', "accept", ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
