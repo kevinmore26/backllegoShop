@@ -450,7 +450,7 @@ class VentaController(CreateAPIView):
                                                            producto=producto,
                                                            pedido=pedido)
                         detallePedido.save()
-                        pedido.pedidoTotal += detallePedido.detalleSubTotal
+                        pedido.pedidoTotal += detallePedido.detalleSubTotal + 6
                         pedido.save()
                 return Response(data={
                     'message': 'Venta agregada exitosamente'
